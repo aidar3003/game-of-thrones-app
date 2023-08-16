@@ -6,13 +6,13 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const Header = () => {
     return(
-            <Navbar bg="dark" data-bs-theme="dark">
+            <Navbar data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
+                <Navbar.Brand href="#home">Game Of Thrones DB</Navbar.Brand>
+                <Nav className="d-flex justify-content-between">
+                    <Nav.Link href="#home">Characters</Nav.Link>
+                    <Nav.Link href="#features">Houses</Nav.Link>
+                    <Nav.Link href="#pricing">Books</Nav.Link>
                 </Nav>
             </Container>
             </Navbar>

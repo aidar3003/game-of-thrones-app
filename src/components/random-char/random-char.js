@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './random-char.css'
 import gotService from "../../services/gotService";
 
 export default class RandomChar extends Component {
@@ -19,7 +20,7 @@ export default class RandomChar extends Component {
     }
 
     updateChar() {
-        const id = 150;
+        const id = Math.floor(Math.random() * 140 + 25);
         this.gotService.getCharacter(id)
             .then((char) => {
                 this.setState({
@@ -40,7 +41,7 @@ export default class RandomChar extends Component {
             <div className="random-block rounded">
                 <h4>{name}</h4>
                 <ul className="list-group list-group-flush">
-                    <li>
+                    <li className="list-group-item d-flex justify-content-between">
                         <span className="term">Gender</span>
                         <span>{gender}</span>
                     </li>
@@ -52,7 +53,7 @@ export default class RandomChar extends Component {
                         <span className="term">Born</span>
                         <span>{born}</span>
                     </li>
-                    <li>
+                    <li className="list-group-item d-flex justify-content-between">
                         <span className="term">Died</span>
                         <span>{died}</span>
                     </li>
