@@ -1,7 +1,6 @@
 
 export default class gotService {
-    constructor(props) {
-        super(props)
+    constructor() {
         this._apiBase = 'https://anapioficeandfire.com/api'
     };
 
@@ -12,23 +11,15 @@ export default class gotService {
             throw new Error(`Could not fetch ${url}`);
         }
 
+        return await res.json();
+
     }
 
     getAllCharacters() {
-        return this.getResource('/characters?page=5');
+        return this.getResource(`/characters?page=5`);
     }
 
     getCharacter(id) {
         return this.getResource(`/characters/${id}`)
     }
 }
-
-const got = new gotService();
-
-got.getAllCharacters()
-    .then(res => {
-        res.forEach(item => console.log(item.name))
-    })
-
-got.getCharacter()
-    .then(res => console.log(res))
