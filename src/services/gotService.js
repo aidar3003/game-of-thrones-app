@@ -15,11 +15,23 @@ export default class gotService {
 
     }
 
-    getAllCharacters() {
-        return this.getResource(`/characters?page=5`);
+    async getAllCharacters() {
+        const res = await this.getResource(`/characters?page=5`);
+        return res.map(this._transformCharacter)
     }
 
-    getCharacter(id) {
-        return this.getResource(`/characters/${id}`)
+    async getCharacter(id) {
+        const res = await this.getResource(`/characters/${id}`)
+        return this._transformCharacter(res)
+    }
+
+    _transformCharacter(char) {
+        return {
+            name: char.name,
+            gender: char.gender,
+            culture: char.culture,
+            born: char.born,
+            died: char.died,
+        }
     }
 }
