@@ -1,54 +1,54 @@
 import React from "react";
 import gotService from "../../services/gotService";
 
-export default class CharDetails extends React.Component {
+export default class ItemDetails extends React.Component {
 
     gotService = new gotService();
 
     state = {
-        char: null
+        item: null
     }
 
     componentDidMount() {
-        this.updateChar();
+        this.updateItem();
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.charId !== prevProps) {
-            this.updateChar()
+        if(this.props.itemId !== prevProps) {
+            this.updateItem()
         }
     }
 
     getCharacter() {
-        const id = 99;
+        const id = 10;
         this.gotService.getCharacter(id)
-            .then(this.onCharLoaded)
+            .then(this.onItemLoaded)
     }
 
-    onCharLoaded = (char) => {
+    onItemLoaded = (item) => {
         this.setState({
-            char
+            item
         })
     }
 
-    updateChar = () => {
-        const {charId} = this.props;
-        if(!charId) {
+    updateItem = () => {
+        const {itemId} = this.props;
+        if(!itemId) {
             return;
         }
-        this.gotService.getCharacter(charId)
-            .then((char) => {
-                this.setState({char})
+        this.gotService.getCharacter(itemId)
+            .then((item) => {
+                this.setState({item})
             })
     }
 
     render() {
 
-        if(!this.state.char) {
+        if(!this.state.item) {
             return <span>Please select character</span>
         }
 
-        const {name, gender, culture, born, died} = this.state.char;
+        const {name, gender, culture, born, died} = this.state.item;
 
         return(
             <>

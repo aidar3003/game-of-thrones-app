@@ -2,21 +2,21 @@ import React, {Component} from "react";
 import ItemList from '../item-list/item-list';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import CharDetails from '../char-details';
 import gotService from "../../services/gotService";
+import BookDetails from "../book-details";
 
 export default class BooksPage extends Component {
     
     state = {
         item: [],
-        selectedChar: null
+        selectedItem: null
     }
 
     gotService = new gotService();
 
-    onCharSelected = (id) => {
+    onItemSelected = (id) => {
         this.setState({
-          selectedChar: id
+          selectedItem: id
         })
       }
 
@@ -26,13 +26,13 @@ export default class BooksPage extends Component {
               <Row>
                 <Col>
                   <ItemList 
-                    onCharSelected={this.onCharSelected}
+                    onItemSelected={this.onItemSelected}
                     getData={this.gotService.getBooks}
                     renderItem={(item) => item.name}
                   />
                 </Col>
                   <Col>
-                  <CharDetails charId={this.state.selectedChar}/>
+                  <BookDetails itemId={this.state.selectedItem}/>
                 </Col>
               </Row>
             </>

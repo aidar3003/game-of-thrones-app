@@ -35,11 +35,13 @@ export default class gotService {
 
     
     getBooks = async () => {
-        return await this.getResource('/books/')    
+        const res = await this.getResource('/books/')  
+        return res.map(this._transformBook) 
     }
 
     getBook = async (id) => {
-        return await this.getResource(`/books/${id}`)
+        const res = await this.getResource(`/books/${id}`)
+        return this._transformBook(res)
     }
 
     _transformCharacter = (char) => {
@@ -49,6 +51,15 @@ export default class gotService {
             culture: char.culture,
             born: char.born,
             died: char.died,
+        }
+    }
+
+    _transformBook = (book) => {
+        return {
+            name: book.name,
+            authors: book.authors,
+            numberOfPages: book.numberOfPages,
+            country: book.country
         }
     }
 }
