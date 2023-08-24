@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import ItemList from '../item-list/item-list';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CharDetails from '../item-details';
 import gotService from "../../services/gotService";
+import WithData from "../with-data";
 
 export default class HousesPage extends Component {
     
@@ -25,7 +25,7 @@ export default class HousesPage extends Component {
             <>
                 <Row>
               <Col>
-                <ItemList 
+                <WithData 
                   onItemSelected={this.onItemSelected}
                   getData={this.gotService.getHouses}
                   renderItem={(item) => item.name}

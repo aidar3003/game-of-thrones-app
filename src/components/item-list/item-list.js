@@ -1,33 +1,18 @@
-import React, {Component} from "react";
+import React from "react";
 import ListGroup from 'react-bootstrap/ListGroup';
 
 
-export default class ItemList extends Component {
+const ItemList = (props) => {
 
-    state = {
-        itemList: []
-    }
-
-    componentDidMount() {
-        const {getData} = this.props;
-
-        getData()
-            .then((itemList) => {
-                this.setState({
-                    itemList
-                })
-            })
-    }
-
-    renderItem(arr) {
+    const renderItem = (arr) => {
         return arr.map((item,i) => {
             const {id} = item;
-            const label = this.props.renderItem(item)
+            const label = props.renderItem(item)
 
             return(
                 <ListGroup.Item key={id} 
                 className="item-list list-group"
-                onClick={() => this.props.onItemSelected(i)}
+                onClick={() => props.onItemSelected(i)}
                 >
                     {label}
                 </ListGroup.Item>
@@ -35,16 +20,15 @@ export default class ItemList extends Component {
         })
     }
 
-    render() {
-
-        const {itemList} = this.state;
-
-        const items = this.renderItem(itemList);
+    const {data} = props;
+    const items = renderItem(data)
         
-        return(
-                <ListGroup className="item-list list-group">
-                    {items}
-                </ListGroup>
-        )
-    }
+    return(
+        <ListGroup className="item-list list-group">
+            {items}
+            </ListGroup>
+    )
+
 }
+
+export default ItemList;

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ItemList from '../item-list/item-list';
+import WithData from "../with-data";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ItemDetails from '../item-details';
@@ -25,9 +25,8 @@ export default class CharacterPage extends Component {
             <>
                 <Row>
               <Col>
-                <ItemList 
+                <WithData 
                   onItemSelected={this.onItemSelected}
-                  getData={this.gotService.getAllCharacters}
                   renderItem={(item) => item.name}
                 />
               </Col>
